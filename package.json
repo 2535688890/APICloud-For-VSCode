@@ -1,0 +1,175 @@
+{
+    "name": "apicloud",
+    "displayName": "APICloud",
+    "description": "适用于APICloud开发平台的开发工具,包含创建模板,WiFi真机同步,代码完成,日志输出等功能",
+    "version": "0.0.5",
+    "publisher": "KAI",
+    "engines": {
+        "vscode": "^1.5.0"
+    },
+    "icon": "images/icon.png",
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onCommand:apicloud.startWifi",
+        "onCommand:apicloud.wifiInfo",
+        "onCommand:apicloud.endWifi",
+        "onCommand:apicloud.previewWifi",
+        "onCommand:apicloud.wifiLog",
+        "onCommand:apicloud.syncWifi1",
+        "onCommand:apicloud.syncWifi2",
+        "onCommand:apicloud.addFileTemplate",
+        "onCommand:apicloud.init1",
+        "onCommand:apicloud.init2",
+        "onCommand:apicloud.init3",
+        "onCommand:apicloud.init4",
+        "onCommand:apicloud.previewSide"
+    ],
+    "main": "./out/src/extension",
+    "contributes": {
+        "snippets": [
+            {
+                "language": "javascript",
+                "path": "./snippets/snippets.json"
+            },
+            {
+                "language": "html",
+                "path": "./snippets/snippets.json"
+            }
+        ],
+        "commands": [
+            {
+                "command": "apicloud.startWifi",
+                "title": "启动wifi服务",
+                "category": "apicloud"
+            },
+            {
+                "command": "apicloud.endWifi",
+                "title": "停止wifi服务",
+                "category": "apicloud"
+            },
+            {
+                "command": "apicloud.syncWifi1",
+                "title": "wifi增量更新",
+                "category": "apicloud"
+            },
+            {
+                "command": "apicloud.syncWifi2",
+                "title": "wifi全量更新",
+                "category": "apicloud"
+            },
+            {
+                "command": "apicloud.previewWifi",
+                "title": "Wifi预览页面",
+                "category": "apicloud"
+            },
+            {
+                "command": "apicloud.previewSide",
+                "title": "本地实时预览",
+                "category": "apicloud"
+            },
+            {
+                "command": "apicloud.wifiInfo",
+                "title": "获取wifi信息",
+                "category": "apicloud"
+            },
+            {
+                "command": "apicloud.wifiLog",
+                "title": "获取wifi调试日志",
+                "category": "apicloud"
+            },
+            {
+                "command": "apicloud.init1",
+                "title": "新建项目模板-空白应用",
+                "category": "apicloud"
+            },
+            {
+                "command": "apicloud.init2",
+                "title": "新建项目模板-底部导航",
+                "category": "apicloud"
+            },
+            {
+                "command": "apicloud.init3",
+                "title": "新建项目模板-首页导航",
+                "category": "apicloud"
+            },
+            {
+                "command": "apicloud.init4",
+                "title": "新建项目模板-侧边导航",
+                "category": "apicloud"
+            }
+        ],
+        "keybindings": [
+            {
+                "command": "apicloud.syncWifi1",
+                "key": "Alt+i"
+            },
+            {
+                "command": "apicloud.previewWifi",
+                "key": "Alt+o"
+            },
+            {
+                "command": "apicloud.startWifi",
+                "key": "Alt+w"
+            },
+            {
+                "command": "apicloud.startWifi",
+                "key": "Alt+w"
+            }
+        ],
+        "menus": {
+            "editor/context": [
+                {
+                    "command": "apicloud.syncWifi1",
+                    "group": "apicloud"
+                },
+                {
+                    "command": "apicloud.startWifi",
+                    "group": "apicloud"
+                },
+                {
+                    "command": "apicloud.endWifi",
+                    "group": "apicloud"
+                },
+                {
+                    "when": "resourceLangId == html",
+                    "command": "apicloud.previewSide",
+                    "group": "apicloud"
+                },
+                {
+                    "when": "resourceLangId == html",
+                    "command": "apicloud.previewWifi",
+                    "group": "apicloud"
+                }
+            ]
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "tsc -p ./",
+        "compile": "tsc --watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "lint": "tslint ./src/**/*.ts || tslint ./test/**/*.ts"
+    },
+    "devDependencies": {
+        "typescript": "^2.0.3",
+        "vscode": "^1.0.0",
+        "mocha": "^2.3.3",
+        "@types/node": "^6.0.40",
+        "@types/mocha": "^2.2.32"
+    },
+    "dependencies": {
+        "babel-cli": "^6.18.0",
+        "babel-core": "^6.18.2",
+        "babel-loader": "^6.2.7",
+        "babel-preset-latest": "^6.16.0",
+        "file-url": "^2.0.0",
+        "fs-extra": "^0.30.0",
+        "glob": "^7.1.1",
+        "json-loader": "^0.5.4",
+        "prompt": "^1.0.0",
+        "source-map-support": "^0.4.6",
+        "webpack": "^1.13.3",
+        "ws": "^1.1.1"
+    }
+}
