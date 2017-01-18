@@ -76,6 +76,11 @@ export const activate = function (context: vscode.ExtensionContext) {
         vscode.commands.registerCommand('apicloud.syncWifi2', () => {//全量更新
             apicloud.syncWifi({ projectPath: vscode.workspace.rootPath, syncAll: true });
         }),
+        vscode.commands.registerCommand('apicloud.polyfill', () => { //polyfill初始化
+            apicloud.polyfill({output:vscode.workspace.rootPath });
+
+
+        }),
         //Commands.registerCommand('apicloud.addFileTemplate', apicloud2.addFileTemplate),//模板
         vscode.commands.registerCommand('apicloud.init1', () => {
             apicloud.init({ name: "HelloAPICloud", template: 'default', output: vscode.workspace.rootPath });
@@ -164,7 +169,5 @@ var HtmlDocumentContentProvider = (function () {
     };
     return HtmlDocumentContentProvider;
 }());
-
-
 export function deactivate() {
 }

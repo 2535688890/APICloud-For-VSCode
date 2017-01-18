@@ -4,8 +4,9 @@ var fse = require('fs-extra');
 var path = require('path');
 var prompt = require('prompt');
 const WifiSync = require("./WifiSync");
-const file_template_path = "../template/file_template";
-const app_template_path = "../template/app_template";
+const file_template_path = "../../template/file_template";
+const app_template_path = "../../template/app_template";
+const clock_show_path = "../../template/clock-show";
 const file_template_config = {
   "page001": "dianping-classify",
   "page002": "dianping-group",
@@ -38,10 +39,10 @@ const app_template_config = { "default": "空白应用", "bottom": "底部导航
 
 const APICloud = {
   appTemplateConfig() { // 应用模板配置.
-    return app_template_config ;
+    return app_template_config;
   },
   fileTemplateConfig() { // 文件模板配置.
-    return file_template_config ;
+    return file_template_config;
   },
   startWifi({port}) {/* 启动wifi服务. */
     return WifiSync.start({ port: port });
@@ -60,6 +61,17 @@ const APICloud = {
     }
 
     return WifiSync.preview({ file: file });
+  },
+  polyfill({output}) {
+    fse.copy(path.resolve(__dirname,clock_show_path), output, function (err) {
+      // console.error(`开始运行了` )
+      if (err) {
+        outputChannel.appendLine(`polyfill初始化 失败:` + err);
+        return console.error(`polyfill初始化 失败:` + err)
+      }
+      console.log('polyfill初始化 成功!')
+      outputChannel.appendLine(`polyfill初始化 成功!`);
+    }) // copies directory, even if it has subdirectories or files
   },
   wifiInfo() { /* 获取wifi配置信息,如端口号等. */
     // 注意: 这个要动态获取.
@@ -87,6 +99,7 @@ const APICloud = {
       outputChannel.appendLine(`不支持的模板类型:${template} 可选模板: ${Object.keys(app_template_config)}`);
       return;
     }
+
 
     this.validatePackageName(name);
 
@@ -175,7 +188,7 @@ const APICloud = {
         '"%s" 应用名称无效. 应用名称应在20个字符以内,且不能包含空格和符号!',
         name
       );
-      outputChannel.appendLine(name+' 应用名称无效. 应用名称应在20个字符以内,且不能包含空格和符号!');
+      outputChannel.appendLine(name + ' 应用名称无效. 应用名称应在20个字符以内,且不能包含空格和符号!');
       return
     }
   },
