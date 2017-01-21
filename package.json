@@ -12,6 +12,7 @@
         "Other"
     ],
     "activationEvents": [
+        "*",
         "onCommand:apicloud.startWifi",
         "onCommand:apicloud.wifiInfo",
         "onCommand:apicloud.endWifi",
@@ -24,7 +25,6 @@
         "onCommand:apicloud.init2",
         "onCommand:apicloud.init3",
         "onCommand:apicloud.init4",
-        "onCommand:apicloud.previewSide",
         "onCommand:apicloud.polyfill"
     ],
     "main": "./out/src/extension",
@@ -63,11 +63,6 @@
             {
                 "command": "apicloud.previewWifi",
                 "title": "Wifi预览页面",
-                "category": "apicloud"
-            },
-            {
-                "command": "apicloud.previewSide",
-                "title": "本地实时预览",
                 "category": "apicloud"
             },
             {
@@ -140,15 +135,36 @@
                 },
                 {
                     "when": "resourceLangId == html",
-                    "command": "apicloud.previewSide",
-                    "group": "apicloud"
-                },
-                {
-                    "when": "resourceLangId == html",
                     "command": "apicloud.previewWifi",
                     "group": "apicloud"
                 }
             ]
+        },
+        "configuration": {
+            "type": "object",
+            "title": "APIcloud",
+            "properties": {
+                "apicloud.port": {
+                    "type": "string",
+                    "default": "23456",
+                    "description": "服务器端口"
+                },
+                "apicloud.subdirectories": {
+                    "type": "string",
+                    "default": "",
+                    "description": "项目相对于vscode打开目录的子目录,设置后真机同步的目录就是这个子目录，比如使用第三方git同步就必须把文件放到根目录的'/widget'里，这样apicloud官方才能远程打包"
+                },
+                "apicloud.start_wifi": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "开启VSCode后自动启动wifi同步功能"
+                },
+                "apicloud.start_log": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "启动wifi同步功能后自动获取控制台日志"
+                }
+            }
         }
     },
     "scripts": {

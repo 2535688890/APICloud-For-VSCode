@@ -1,4 +1,4 @@
-import { window as Window, workspace as Workspace } from 'vscode';
+import * as vscode from 'vscode';
 import { outputChannel } from './output';
 var fse = require('fs-extra');
 var path = require('path');
@@ -35,8 +35,10 @@ const file_template_config = {
   "page025": "wangyi-news-3",
   "page026": "wangyi-news-4"
 }
+var wifilog = false;
+var wifiqd = false;
 const app_template_config = { "default": "空白应用", "bottom": "底部导航", "home": "首页导航", "slide": "侧边导航" }
-
+const config = vscode.workspace.getConfiguration('apicloud');
 const APICloud = {
   appTemplateConfig() { // 应用模板配置.
     return app_template_config;
@@ -44,10 +46,22 @@ const APICloud = {
   fileTemplateConfig() { // 文件模板配置.
     return file_template_config;
   },
-  startWifi({port}) {/* 启动wifi服务. */
-    return WifiSync.start({ port: port });
+  startWifi() {/* 启动wifi服务. */
+    outputChannel.show();
+    if (!wifiqd) {
+      WifiSync.start({ port: config.get("port") });
+      wifiqd = true;
+      if (config.get('start_log')) this.wifiLog();
+    } else {
+      outputChannel.appendLine('WiFi 服务已经启动过了,若更改端口请关闭wifi服务器后重新启动');
+      let {port, ip, clientsCount} = this.wifiInfo()
+      let tip = `监听IP :${JSON.stringify(ip)}  端口:${port}  设备连接数:${clientsCount}`
+      outputChannel.appendLine(tip);
+    }
+    return;
   },
   endWifi({}) { /* 停止 wifi 服务. */
+    wifiqd = false;
     return WifiSync.end({});
   },
   syncWifi({projectPath, syncAll}) { /* wifi 增量/全量同步. */
@@ -63,7 +77,7 @@ const APICloud = {
     return WifiSync.preview({ file: file });
   },
   polyfill({output}) {
-    fse.copy(path.resolve(__dirname,clock_show_path), output, function (err) {
+    fse.copy(path.resolve(__dirname, clock_show_path), output, function (err) {
       // console.error(`开始运行了` )
       if (err) {
         outputChannel.appendLine(`polyfill初始化 失败:` + err);
@@ -81,26 +95,27 @@ const APICloud = {
     }
     return wifiInfo;
   },
-  wifiLog(callback) {
-    return new Promise(resolve => {
-      WifiSync.on("log", (log) => {
-        callback(log);
-        resolve();
+  wifiLog() {
+    if (!wifilog) {
+      WifiSync.on("log", ({level, content}) => {
+        outputChannel.appendLine(content);
       });
-    });
+      wifilog = true;
+      outputChannel.appendLine('WiFi 日志服务已启动..');
+    } else {
+      outputChannel.appendLine('WiFi 日志服务早已启动..');
+    }
+    return;
   },
   init({name, template, output}) {
     name += ""
     template += ""
     output += ""
-
     if (!app_template_config[template]) {
       console.error(`不支持的模板类型:${template} 可选模板: ${Object.keys(app_template_config)}`);
       outputChannel.appendLine(`不支持的模板类型:${template} 可选模板: ${Object.keys(app_template_config)}`);
       return;
     }
-
-
     this.validatePackageName(name);
 
     var root = path.resolve(output, name);
