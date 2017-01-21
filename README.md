@@ -19,10 +19,10 @@
 ## 配置
 
 * 配置在 ' 文件-首选项-用户设置-apicloud ' 里更改
-* ' apicloud.port wifi '      wifi同步服务的端口
+* ' apicloud.port wifi '      wifi真机同步服务的端口
 * ' apicloud.subdirectories ' 项目相对于vscode打开目录的子目录,设置后真机同步的目录就是这个子目录，比如使用第三方git同步就必须把文件放到根目录的'/widget'里，这样apicloud官方才能远程打包
-* ' apicloud.start_wifi '     开启VSCode后自动启动wifi同步功能
-* ' apicloud.start_log '      启动wifi同步功能后自动获取控制台日志
+* ' apicloud.start_wifi '     打开VSCode后自动启动wifi同步功能
+* ' apicloud.start_log '      启动wifi真机同步服务后自动开启控制台日志获取
 
 ## 特性
 

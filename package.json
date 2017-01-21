@@ -147,7 +147,7 @@
                 "apicloud.port": {
                     "type": "string",
                     "default": "23456",
-                    "description": "服务器端口"
+                    "description": "wifi真机同步服务的端口"
                 },
                 "apicloud.subdirectories": {
                     "type": "string",
@@ -157,12 +157,12 @@
                 "apicloud.start_wifi": {
                     "type": "boolean",
                     "default": false,
-                    "description": "开启VSCode后自动启动wifi同步功能"
+                    "description": "打开VSCode后自动启动wifi同步功能"
                 },
                 "apicloud.start_log": {
                     "type": "boolean",
                     "default": true,
-                    "description": "启动wifi同步功能后自动获取控制台日志"
+                    "description": "启动wifi真机同步服务后自动开启控制台日志获取"
                 }
             }
         }
