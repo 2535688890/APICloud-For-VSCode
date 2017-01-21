@@ -14,6 +14,15 @@
 * wifi 页面预览 Alt + o
 * wifi 增量同步 Alt + i
 * wifi 启动wifi Alt + w
+* 以上和其他功能的快捷键可以自己在 '文件-首选项-键盘快捷方式' 里自己设置更改
+
+## 配置
+
+* 配置在 ' 文件-首选项-用户设置-apicloud ' 里更改
+* ' apicloud.port wifi '      wifi同步服务的端口
+* ' apicloud.subdirectories ' 项目相对于vscode打开目录的子目录,设置后真机同步的目录就是这个子目录，比如使用第三方git同步就必须把文件放到根目录的'/widget'里，这样apicloud官方才能远程打包
+* ' apicloud.start_wifi '     开启VSCode后自动启动wifi同步功能
+* ' apicloud.start_log '      启动wifi同步功能后自动获取控制台日志
 
 ## 特性
 
@@ -34,7 +43,7 @@
 2. 安装 apicloud插件后,VSCode;
 3. 打开VSCode的命令面板(快捷键 Ctrl+shift+p),输入apicloud,即可使用相关APICloud开发功能;
 4. 一切同步功能必须先开启wifi服务
-5. 在设置了可以自定义wifi端口 自启动等功能
+5. 在设置了可以自定义wifi端口自启动等功能，快捷键可以在设置里增加设置
 6. 使用apicloud-polyfill 需要先 polyfill初始化 在运行 **npm i**  注意：同步wifi时 先使用**.syncignore**忽略node_modules目录不然同步很慢文件很多
 7. 反馈地址：[APICloud 官方论坛](http://community.apicloud.com/bbs/forum.php?mod=viewthread&tid=48763)
 

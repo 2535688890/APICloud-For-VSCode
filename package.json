@@ -1,7 +1,7 @@
 {
     "name": "apicloud",
     "displayName": "APICloud",
-    "description": "适用于APICloud开发平台的开发工具,包含创建模板,WiFi真机同步,代码完成,日志输出等功能 最新加入了apicloud-polyfill",
+    "description": "适用于APICloud开发平台的开发工具,包含创建模板,WiFi真机同步,代码完成,日志输出等功能，最新加入了apicloud-polyfill",
     "version": "0.0.7",
     "publisher": "KAI",
     "engines": {
@@ -119,24 +119,24 @@
             "editor/context": [
                 {
                     "command": "apicloud.syncWifi1",
-                    "group": "apicloud"
+                    "group": "apicloud@2"
                 },
                 {
                     "command": "apicloud.startWifi",
-                    "group": "apicloud"
+                    "group": "apicloud@4"
+                },
+                {
+                    "command": "apicloud.syncWifi2",
+                    "group": "apicloud@3"
                 },
                 {
                     "command": "apicloud.endWifi",
-                    "group": "apicloud"
-                },
-                {
-                    "command": "apicloud.wifiLog",
-                    "group": "apicloud"
+                    "group": "apicloud@5"
                 },
                 {
                     "when": "resourceLangId == html",
                     "command": "apicloud.previewWifi",
-                    "group": "apicloud"
+                    "group": "apicloud@1"
                 }
             ]
         },
