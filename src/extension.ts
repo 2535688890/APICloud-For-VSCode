@@ -36,7 +36,8 @@ export const activate = function (context: vscode.ExtensionContext) {
             apicloud.syncWifi({ projectPath: projectPath, syncAll: true });
         }),
         vscode.commands.registerCommand('apicloud.polyfill', () => { //polyfill初始化
-            apicloud.polyfill({ output: vscode.workspace.rootPath });
+            var projectPath = vscode.workspace.rootPath+config.get('subdirectories');
+            apicloud.polyfill({ output: projectPath });
         }),
         //Commands.registerCommand('apicloud.addFileTemplate', apicloud2.addFileTemplate),//模板
         vscode.commands.registerCommand('apicloud.init1', () => {
