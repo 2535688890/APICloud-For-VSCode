@@ -2,7 +2,7 @@
     "name": "apicloud",
     "displayName": "APICloud",
     "description": "适用于APICloud开发平台的开发工具,包含创建模板,WiFi真机同步,代码完成,日志输出等功能 最新加入了apicloud-polyfill",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "publisher": "KAI",
     "engines": {
         "vscode": "^1.5.0"
