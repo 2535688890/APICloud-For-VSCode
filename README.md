@@ -31,7 +31,6 @@
 * 包含四个默认应用模板与26个默认页面模板;
 * 支持 WiFi 增量/全量 更新;
 * 基于事件机制的流式日志输出;
-* 代码基于 *GPL-3.0* 开源,可自由定制与扩展;
 * 支持在 VSCode 控制台实时调试插件本身的代码;
 * 开启/关闭 WiFi 服务;
 * 提取集成了 [apicloud-polyfill](https://github.com/apicloudcom/apicloud-polyfill) 可以直接使用最新的 es6,es7语法,在 JS 层以模块化的方式,高效优雅地开发APICloud 应用. 
