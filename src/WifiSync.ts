@@ -162,7 +162,7 @@ const WifiSync = {
 
     if (fse.existsSync(configPath)) {
       let configText = fse.readFileSync(configPath, 'utf8');
-      let appIdInfo = configText.match(/widget.*id.*=.*(A[0-9]{13})\"/);
+      let appIdInfo = configText.match(/widget.*id.*=.*(A\d+)\"/);
       
       if (appIdInfo) {
         appId = appIdInfo[1]
@@ -197,7 +197,7 @@ const WifiSync = {
       configPath = path.resolve(project, "config.xml");
       if (fse.existsSync(configPath)) {
         let configText = fse.readFileSync(configPath, 'utf8');
-        let appIdInfo = configText.match(/widget.*id.*=.*(A[0-9]{13})\"/);
+        let appIdInfo = configText.match(/widget.*id.*=.*(A\d+)\"/);
 
         if (appIdInfo) {
           appId = appIdInfo[1];
@@ -332,7 +332,7 @@ const WifiSync = {
 
           let configText = fse.readFileSync(configFilePath, 'utf8');
 
-          let appIdInfo = configText.match(/widget.*id.*=.*(A[0-9]{13})\"/)
+          let appIdInfo = configText.match(/widget.*id.*=.*(A\d+)\"/)
           if (appIdInfo && appId === appIdInfo[1]) {
             resolve(itemPath);
           }
